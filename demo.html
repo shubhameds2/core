@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Display JSON from URL</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+Hello@!
+<div id="jsonOutput"></div>
+
+<script>
+$(document).ready(function() {
+    // Make AJAX request to fetch JSON
+    $.ajax({
+        url: "http://localhost:4503/content/dam/hm/final/womenswear/print/placement-prints/06-vtg-il-012189/bal.jpg.json",
+        method: "GET",
+        dataType: "json",
+        success: function(response) {
+            // Display JSON in DOM
+            var jsonOutputDiv = $("#jsonOutput");
+            jsonOutputDiv.text(JSON.stringify(response, null, 2));
+        },
+        error: function(xhr, status, error) {
+            console.error('Error:', status, error);
+        }
+    });
+});
+</script>
+
+</body>
+</html>
